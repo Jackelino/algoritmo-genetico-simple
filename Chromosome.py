@@ -33,25 +33,29 @@ class Chromosome:
 
     def mapping(self, min: float, n: int, precision=0):
         """
-
-        :param min:
-        :param n:
-        :param precision:
-        :return:
+        mapea los valores a reprentar en el rango
+        :param min: rango minimo
+        :param n: numero de bits que se utilizan
+        :param precision: cuantos digitos se quieren reprentar .00
+        :return: retorna el numero mapeado en el rango
         """
         if (precision != 0):
             return int((n * math.pow(10, precision)) - (min * math.pow(10, precision)))
         else:
             return n - min
 
-    def reverseMapping(self, min: float, n: int, precision: int):
+    def reverseMapping(self, min: float, n: int, precision=0):
         """
-
-        :param min:
-        :param n:
-        :return:
+        mapeo inverso
+        :param precision: cuantos digitos se quieren reprentar .00
+        :param min: rango minimo
+        :param n: numero de bits que se utilizan
+        :return: retorna el numero mapeado en el rango
         """
-        return (n + (min * math.pow(10, precision))) / math.pow(10, precision)
+        if (precision != 0):
+            return (n + (min * math.pow(10, precision))) / math.pow(10, precision)
+        else:
+            return n + min
 
     def getAdn(self, n, chromosome):
         """
@@ -77,6 +81,11 @@ class Chromosome:
             return s
 
     def generateRandomvalues(self, chromosome):
+        """
+        genera valores aleatorios para el individuo
+        :param chromosome: cromosoma del individuo
+        :return:  retorna valores aleatorios
+        """
         if chromosome.typeVar == int:
             return random.randint(chromosome.vMin, chromosome.vMax)
         if chromosome.typeVar == float:

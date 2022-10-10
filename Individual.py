@@ -9,13 +9,16 @@ class Individual:
         :param chromosome: cromosoma del individuo
         :param adn: adn del idividuo
         """
-        self._values = self.initializeValues(chromosomes)  # valores del individuo
-        self._maps = self.mappings(self.values, chromosomes)  # valores mapeados del individuo
         if adn != '':
             self._adn = adn
+            self._maps = self.mappingsInv(self.adn)  # valores mapeados del individuo c partir del adn
+            self._values = self.getValues(self.maps, chromosomes)  # valores del individuo
+            self._fitness = self.funtionsFitness(self.values)  # fitness evaluado del individuo
         else:
+            self._values = self.initializeValues(chromosomes)  # valores del individuo
+            self._maps = self.mappings(self.values, chromosomes)  # valores mapeados del individuo
+            self._fitness = self.funtionsFitness(self.values)  # fitness evaluado del individuo
             self._adn = self.getADN(self.maps, chromosomes)
-        self._fitness = self.funtionsFitness(self.values)  # fitness evaluado del individuo
 
     def funtionsFitness(self, values: list):
         """
@@ -34,11 +37,23 @@ class Individual:
         :param chromosomes: cromosomas
         :return: valores alearorios
         """
-        arrayList = []
+        values = []
         chromosome: Chromosome
         for chromosome in chromosomes:
-            arrayList.append(chromosome.generateRandomvalues(chromosome))
-        return arrayList
+            values.append(chromosome.generateRandomvalues(chromosome))
+        return values
+
+    def getValues(self, valuesMappings: list, chromosomes: list):
+
+        values = []
+        chromosome: Chromosome
+        i = 0
+        value: int
+        for value in valuesMappings:
+            chromosome = chromosomes[i]
+            values.append(chromosome.reverseMapping(chromosome.vMin, value, chromosome.precision))
+            i = i + 1
+        return values
 
     def mappings(self, values: list, chromosomes: list):
         """
@@ -60,12 +75,26 @@ class Individual:
             i = i + 1
         return valuesMap
 
+    def mappingsInv(self, adn: list):
+        """
+        convierte los valores de ADN a valores de tipo entero
+        :param values: valores normales enteros ó flotantes
+        :return: valores mapeados
+        """
+        valuesMap = []
+        chromosome: Chromosome
+        chromosomeAux: Chromosome
+        strBinary = "".join(map(str, adn))
+        numberBinary = int(str(strBinary), 2)
+        valuesMap.append(numberBinary)
+        return valuesMap
+
     def getADN(self, m: list, chromosomes: list):
         """
         optiene el adn del individuo
         :param m: valores mapeaos
         :param chromosomes: croosoma
-        :return:
+        :return: retorna una lista cada posisxion es un bit [1,0,1]
         """
         adnString = ''
         adn = []
@@ -88,8 +117,8 @@ class Individual:
     def adn(self):
         return self._adn
 
-    @adn.setter
-    def adn(self, adn):
+    # @adn.setter
+    def set_adn(self, adn):
         self._adn = adn
 
     @property

@@ -1,3 +1,5 @@
+import math
+
 from Chromosome import Chromosome
 
 
@@ -29,7 +31,7 @@ class Individual:
         return self.f1(values)
 
     def f1(self, values: list):
-        return values[0] + 5
+        return math.pow(values[0], 3) - math.pow(values[0], 2) - values[0] + 2
 
     def initializeValues(self, chromosomes: list):
         """

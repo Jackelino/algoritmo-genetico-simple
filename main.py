@@ -1,5 +1,8 @@
 import math
 
+import numpy as np
+from matplotlib import pyplot as plt
+
 from Chromosome import Chromosome
 from Generation import Generation
 
@@ -67,5 +70,8 @@ def main():
         i = i + 1
         print("----------------------------------------------------------------------------")
 
+    plt.plot([1, 2, 3, 10])
+    plt.ylabel('xx')
+    plt.show()
 
 main()

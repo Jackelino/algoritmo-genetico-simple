@@ -95,7 +95,6 @@ class Generation:
                               self.crosses(individualsSelection[i - i], individualsSelection[i - (i - 1)], g.pC, g.pM,
                                            3))
             individuals.append(hijo)
-
         return individuals
 
     def crosses(self, father: Individual, mother: Individual, pC: float, pM: float, option: int):

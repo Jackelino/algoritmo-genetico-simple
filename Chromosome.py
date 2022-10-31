@@ -40,9 +40,11 @@ class Chromosome:
         :return: retorna el numero mapeado en el rango
         """
         if (precision != 0):
-            return abs(int((n * math.pow(10, precision)) - (min * math.pow(10, precision))))
+            res = abs(int((n * math.pow(10, precision)) - (min * math.pow(10, precision))))
+            return res
         else:
-            return abs(n - min)
+            res = abs(n - min)
+            return res
 
     def reverseMapping(self, min: float, n: int, precision=0):
         """
@@ -52,8 +54,9 @@ class Chromosome:
         :param n: numero de bits que se utilizan
         :return: retorna el numero mapeado en el rango
         """
-        if (precision != 0):
-            return abs(n + (min * math.pow(10, precision))) / math.pow(10, precision)
+        if precision != 0:
+            res = abs(n + (min * math.pow(10, precision))) / math.pow(10, precision)
+            return round(res, precision)
         else:
             return abs(n + min)
 

@@ -28,7 +28,7 @@ class Individual:
         :param values: valores
         :return:
         """
-        return self.f5(values)
+        return self.f2(values)
 
     def f1(self, values: list):
         return (math.pow((1 - values[0]), 3) * math.e ** (- math.pow(values[0], 2) - math.pow((values[1] + 1), 3))) + (
@@ -67,7 +67,7 @@ class Individual:
         value: int
         for value in valuesMappings:
             chromosome = chromosomes[i]
-            values.append(Chromosome.reverseMapping(chromosome.vMin, value, chromosome.precision))
+            values.append(chromosome.reverseMapping(chromosome.vMin, value, chromosome.precision))
             i = i + 1
         return values
 
@@ -86,7 +86,7 @@ class Individual:
         i = 0
         for value in values:
             chromosome = chromosomes[i]
-            map = Chromosome.mapping(chromosome.vMin, value, chromosome.precision)
+            map = chromosome.mapping(chromosome.vMin, value, chromosome.precision)
             valuesMap.append(map)
             i = i + 1
         return valuesMap

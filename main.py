@@ -20,9 +20,8 @@ def main():
     c1 = Chromosome(0, 63, TYPE_VARIABLE.get("INTEGER"))
     c3 = Chromosome(0, 31, TYPE_VARIABLE.get("INTEGER"))
     c2 = Chromosome(-5.11, 5.12, TYPE_VARIABLE.get("FLOTANTE"), 2)
-    listChromosome.append(c2)
-    listChromosome.append(c2)
-    print("numero de bits a utilizar:", c1.numberBits + c3.numberBits)
+    listChromosome.append(c1)
+    print("numero de bits a utilizar:", c2.numberBits)
 
     """indi = Individual(listChromosome)
     indi2 = Individual(listChromosome, [0, 0, 0])
@@ -66,12 +65,4 @@ def main():
         print("----------------------------------------------------------------------------")
 
 
-def f1(values: list):
-    return (math.pow((1 - values[0]), 3) * math.e ** (- math.pow(values[0], 2) - math.pow((values[1] + 1), 3))) + (
-            math.pow((1 - values[2]), 3) * math.e ** (- math.pow(values[0], 2) - math.pow((values[2] + 1), 3))) - (
-                   values[0] - math.pow(values[0], 2) - math.pow(values[2], 2) * math.e ** (
-                   - math.pow(values[1], 2) - math.pow(values[2], 2)))
-
-
 main()
-
